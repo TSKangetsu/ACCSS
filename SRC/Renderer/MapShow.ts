@@ -6,11 +6,11 @@ export class MapShow {
     MapY: number = 110;
     MarkerID: Array<leaflet.Marker> = new Array();
     constructor(DOMElement: string) {
-        this.Map = leaflet.map(DOMElement).setView([21, 110], 10);
+        this.Map = leaflet.map(DOMElement, { worldCopyJump: true }).setView([21, 110], 10);
         leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'ACCSS by TSKangetsu',
             maxZoom: 20,
-            minZoom: 4,
+            minZoom: 2,
             tileSize: 512,
             zoomOffset: -1
         }).addTo(this.Map);
@@ -24,8 +24,8 @@ export class MapShow {
         }
     }
 
-    public getCurrentCenterPosition(): Array<Number> {
-        let tmp: Array<Number> = new Array<Number>();
+    public getCurrentCenterPosition(): Array<number> {
+        let tmp: Array<number> = new Array<number>();
         tmp[0] = this.Map.getCenter().lat;
         tmp[1] = this.Map.getCenter().lng;
         return tmp;
